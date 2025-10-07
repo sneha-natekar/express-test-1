@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1><%= header %></h1>
+      <p class="subtitle">Explore our collection of modern device mockups</p>
+      <nav class="nav">
+        <a href="/">All Devices</a>
+        <a href="/type/mobile">Mobile</a>
+        <a href="/type/tablet">Tablet</a>
+        <a href="/type/laptop">Laptop</a>
+        <a href="/type/desktop">Desktop</a>
+        <a href="/type/wearable">Wearable</a>
+        <a href="/api/devices">API</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <% if (devices.length === 0) { %>
+        <div class="no-devices">
+          <p>No devices found in this category.</p>
+          <a href="/" class="btn">View All Devices</a>
+        </div>
+      <% } else { %>
+        <div class="device-grid">
+          <% devices.forEach(function(device) { %>
+            <article class="device-card">
+              <div class="device-image">
+                <div class="device-mockup <%= device.type.toLowerCase() %>">
+                  <div class="device-screen">
+                    <span class="device-icon">📱</span>
+                  </div>
+                </div>
+              </div>
+              <div class="device-info">
+                <h2 class="device-name"><%= device.name %></h2>
+                <span class="device-type"><%= device.type %></span>
+                <p class="device-description"><%= device.description %></p>
+                <div class="device-specs">
+                  <span class="spec">Screen: <%= device.screen %></span>
+                </div>
+                <a href="/device/<%= device.image %>" class="btn">View Details</a>
+              </div>
+            </article>
+          <% }); %>
+        </div>
+      <% } %>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 Device Mockups Gallery - Express.js Example</p>
+      <p>Built with Express.js and EJS</p>
+    </div>
+  </footer>
+</body>
+</html>
